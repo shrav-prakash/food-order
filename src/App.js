@@ -1,25 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import React from 'react';
+import PageSummary from './components/PageSummary/PageSummary';
+import Items from './components/Items/Items';
 
-function App() {
+export default function App() {
+  const meals = [
+    {
+      id: 'm1',
+      name: 'Sushi',
+      description: 'Finest fish and veggies',
+      price: 22.99,
+    },
+    {
+      id: 'm2',
+      name: 'Schnitzel',
+      description: 'A german specialty!',
+      price: 16.5,
+    },
+    {
+      id: 'm3',
+      name: 'Barbecue Burger',
+      description: 'American, raw, meaty',
+      price: 12.99,
+    },
+    {
+      id: 'm4',
+      name: 'Green Bowl',
+      description: 'Healthy...and green...',
+      price: 18.99,
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header />
+      <PageSummary />
+      <Items meals={meals} />
+    </React.Fragment>
   );
 }
 
-export default App;
