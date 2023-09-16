@@ -4,9 +4,7 @@ import PageSummary from './components/PageSummary/PageSummary';
 import Items from './components/Items/Items';
 import CartModal
   from './components/CartModal/CartModal';
-import CartModalContext from './store/cart-modal-context';
-
-import { useState } from 'react';
+import { CartModalContextProvider } from './store/cart-modal-context';
 
 export default function App() {
   const meals = [
@@ -36,18 +34,13 @@ export default function App() {
     },
   ];
 
-  const [isCartEnabled, setIsCartEnabled] = useState(false)
-
   return (
-    <CartModalContext.Provider value={{
-      isCartEnabled: isCartEnabled,
-      setIsCartEnabled: setIsCartEnabled
-    }}>
+    <CartModalContextProvider>
       <Header />
       <PageSummary />
       <Items meals={meals} />
       <CartModal />
-    </CartModalContext.Provider>
+    </CartModalContextProvider>
   );
 }
 
