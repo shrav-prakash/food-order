@@ -4,6 +4,10 @@ import PageSummary from './components/PageSummary/PageSummary';
 import Items from './components/Items/Items';
 import CartModal
   from './components/CartModal/CartModal';
+import CartModalContext from './store/cart-modal-context';
+
+import { useState } from 'react';
+
 export default function App() {
   const meals = [
     {
@@ -31,13 +35,19 @@ export default function App() {
       price: 18.99,
     },
   ];
+
+  const [isCartEnabled, setIsCartEnabled] = useState(false)
+
   return (
-    <React.Fragment>
+    <CartModalContext.Provider value={{
+      isCartEnabled: isCartEnabled,
+      setIsCartEnabled: setIsCartEnabled
+    }}>
       <Header />
       <PageSummary />
       <Items meals={meals} />
-      {/* <CartModal /> */}
-    </React.Fragment>
+      <CartModal />
+    </CartModalContext.Provider>
   );
 }
 

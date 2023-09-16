@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import Card from "../../Card/Card";
 import styles from './Cart.module.css'
 import CartItems from "./CartItems/CartItems";
+import CartModalContext from "../../../store/cart-modal-context";
 
 export default function Cart() {
     const cartItems = [
@@ -19,6 +21,8 @@ export default function Cart() {
     let tot = 0;
     cartItems.forEach(item => tot += (+item.price * +item.amt))
 
+    const ctx = useContext(CartModalContext)
+
     return (
         <Card className={styles.modal} >
             <CartItems items={cartItems} />
@@ -27,7 +31,7 @@ export default function Cart() {
                 <span>${tot}</span>
             </div>
             <div className={styles.actions}>
-                <button className={styles.button}>Close</button>
+                <button className={styles.button} onClick={() => ctx.setIsCartEnabled(false)}>Close</button>
                 <button className={styles['button--alt']}>Order</button>
             </div>
         </Card>
