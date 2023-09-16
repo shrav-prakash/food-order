@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from './ItemForm.module.css'
 
 export default function ItemForm({ id }) {
+    const [quantity, setQuantity] = useState('1')
+
+    const formSubmit = event => {
+        event.preventDefault()
+        console.log(quantity, id)
+    }
+
     return (
-        <div className={styles.form}>
+        <form className={styles.form} onSubmit={formSubmit}>
             <div className={styles.input}>
                 <label htmlFor={'amt_' + id}>Amount</label>
-                <input id={'amt_' + id} type='number' min='1' max='10' defaultValue='1' />
+                <input id={'amt_' + id} type='number' min='1' max='10' value={quantity} onChange={event => setQuantity(event.target.value)} />
             </div>
-            <button>+ Add</button>
-        </div>
+            <button type='submit'>+ Add</button>
+        </form>
     )
 }

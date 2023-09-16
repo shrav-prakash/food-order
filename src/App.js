@@ -1,9 +1,9 @@
-import './App.css';
 import Header from './components/Header/Header';
 import React from 'react';
 import PageSummary from './components/PageSummary/PageSummary';
 import Items from './components/Items/Items';
-
+import CartModal
+  from './components/CartModal/CartModal';
 export default function App() {
   const meals = [
     {
@@ -36,6 +36,7 @@ export default function App() {
       <Header />
       <PageSummary />
       <Items meals={meals} />
+      {/* <CartModal /> */}
     </React.Fragment>
   );
 }
