@@ -9,7 +9,7 @@ export default function Item({ name, price, desc }) {
                 <div className={styles.desc}>{desc}</div>
                 <div className={styles.price}>${price}</div>
             </div>
-            <ItemForm id={name} />
+            <ItemForm id={name} price={price} />
         </li>
     )
 }

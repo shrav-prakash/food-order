@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import styles from './ItemForm.module.css'
+import CartItemsContext from '../../../../store/cart-items-context'
 
-export default function ItemForm({ id }) {
+export default function ItemForm({ id, price }) {
     const [quantity, setQuantity] = useState('1')
+
+    const ctx = useContext(CartItemsContext);
 
     const formSubmit = event => {
         event.preventDefault()
-        console.log(quantity, id)
+        ctx.dispatchCartDetails({ type: '+', target: id, price: price, amt: quantity })
     }
 
     return (

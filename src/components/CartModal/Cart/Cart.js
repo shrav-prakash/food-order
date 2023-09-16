@@ -3,36 +3,22 @@ import Card from "../../Card/Card";
 import styles from './Cart.module.css'
 import CartItems from "./CartItems/CartItems";
 import CartModalContext from "../../../store/cart-modal-context";
+import CartItemsContext from "../../../store/cart-items-context";
 
 export default function Cart() {
-    const cartItems = [
-        {
-            name: 'Sushi',
-            price: '22.99',
-            amt: '3'
-        },
-        {
-            name: 'Burger',
-            price: '14.99',
-            amt: '2'
-        }
-    ]
-
-    let tot = 0;
-    cartItems.forEach(item => tot += (+item.price * +item.amt))
-
+    const cartCtx = useContext(CartItemsContext)
     const ctx = useContext(CartModalContext)
 
     return (
         <Card className={styles.modal} >
-            <CartItems items={cartItems} />
+            <CartItems items={cartCtx.cartDetails.cartItems} />
             <div className={styles.total}>
                 <span>Total Amount</span>
-                <span>${tot}</span>
+                <span>${cartCtx.cartDetails.totPrice}</span>
             </div>
             <div className={styles.actions}>
                 <button className={styles.button} onClick={() => ctx.setIsCartEnabled(false)}>Close</button>
-                <button className={styles['button--alt']}>Order</button>
+                {cartCtx.cartDetails.numItems > 0 && (<button className={styles['button--alt']}>Order</button>)}
             </div>
         </Card>
     )

@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  overflow: unset;
   margin: 0;
   background-color: #1e1e1e;
 }
